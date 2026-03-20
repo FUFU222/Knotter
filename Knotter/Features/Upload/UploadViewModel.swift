@@ -8,11 +8,19 @@ final class UploadViewModel: ObservableObject {
     @Published var caption: String = ""
     @Published var selectedKnotType: KnotType?
     @Published var showSuccessAlert: Bool = false
+    @Published var isSubmitting: Bool = false
+    @Published var errorMessage: String?
+
+    private let repository: PostRepository
 
     static let maxCaptionLength = 100
 
+    init(repository: PostRepository = SupabasePostRepository()) {
+        self.repository = repository
+    }
+
     var canSubmit: Bool {
-        selectedImage != nil && selectedKnotType != nil
+        selectedImage != nil && selectedKnotType != nil && !isSubmitting
     }
 
     func loadImage() async {
@@ -33,9 +41,27 @@ final class UploadViewModel: ObservableObject {
     }
 
     func submit() {
-        // Dummy success — in production, upload to Supabase Storage + DB
-        showSuccessAlert = true
-        resetForm()
+        guard let image = selectedImage,
+              let imageData = image.jpegData(compressionQuality: 0.8),
+              let knotType = selectedKnotType else { return }
+
+        isSubmitting = true
+        errorMessage = nil
+
+        Task {
+            do {
+                try await repository.createPost(
+                    imageData: imageData,
+                    caption: caption,
+                    knotTypeSlug: knotType.rawValue
+                )
+                showSuccessAlert = true
+                resetForm()
+            } catch {
+                errorMessage = "投稿に失敗しました: \(error.localizedDescription)"
+            }
+            isSubmitting = false
+        }
     }
 
     private func resetForm() {

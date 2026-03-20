@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var authViewModel: AuthViewModel
     @State private var selectedTab: Tab = .feed
 
     enum Tab {
         case feed
+        case search
         case upload
+        case notifications
+        case profile
     }
 
     var body: some View {
@@ -17,12 +21,34 @@ struct ContentView: View {
                 }
                 .tag(Tab.feed)
 
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("検索")
+                }
+                .tag(Tab.search)
+
             UploadView()
                 .tabItem {
                     Image(systemName: "plus.circle.fill")
                     Text("投稿")
                 }
                 .tag(Tab.upload)
+
+            NotificationsView()
+                .tabItem {
+                    Image(systemName: "bell.fill")
+                    Text("通知")
+                }
+                .tag(Tab.notifications)
+
+            ProfileView()
+                .environment(\.authViewModel, authViewModel)
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("プロフィール")
+                }
+                .tag(Tab.profile)
         }
         .tint(.rescueOrange)
         .onAppear {
@@ -32,5 +58,18 @@ struct ContentView: View {
             UITabBar.appearance().standardAppearance = appearance
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+    }
+}
+
+// MARK: - AuthViewModel Environment Key
+
+private struct AuthViewModelKey: EnvironmentKey {
+    static let defaultValue: AuthViewModel? = nil
+}
+
+extension EnvironmentValues {
+    var authViewModel: AuthViewModel? {
+        get { self[AuthViewModelKey.self] }
+        set { self[AuthViewModelKey.self] = newValue }
     }
 }
