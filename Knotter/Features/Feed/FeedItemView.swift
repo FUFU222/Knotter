@@ -3,11 +3,12 @@ import SwiftUI
 struct FeedItemView: View {
     let post: Post
     let onLikeTapped: () -> Void
+    @State private var showComments = false
 
     var body: some View {
         ZStack {
             // Background media
-            MediaPlaceholderView(assetName: post.mediaAssetName, mediaType: post.mediaType)
+            MediaPlaceholderView(assetName: post.mediaUrl, mediaType: post.mediaType)
                 .ignoresSafeArea()
 
             // Gradient overlay for readability
@@ -28,10 +29,19 @@ struct FeedItemView: View {
                 HStack(alignment: .bottom) {
                     // Left: post info
                     VStack(alignment: .leading, spacing: AppTheme.smallSpacing) {
-                        Text(post.username)
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                        if let userId = post.userId {
+                            NavigationLink(value: userId) {
+                                Text(post.username)
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                            }
+                        } else {
+                            Text(post.username)
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
 
                         Text(post.caption)
                             .font(.subheadline)
@@ -56,12 +66,26 @@ struct FeedItemView: View {
                             likeCount: post.likeCount,
                             onTap: onLikeTapped
                         )
+
+                        Button(action: { showComments = true }) {
+                            VStack(spacing: 4) {
+                                Image(systemName: "bubble.left.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                Text("コメント")
+                                    .font(.caption2)
+                                    .foregroundColor(.white)
+                            }
+                        }
                     }
                     .padding(.trailing, 4)
                 }
                 .padding(.horizontal, AppTheme.spacing)
                 .padding(.bottom, 32)
             }
+        }
+        .sheet(isPresented: $showComments) {
+            CommentsView(postId: post.id)
         }
     }
 }

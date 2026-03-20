@@ -1,0 +1,42 @@
+import Foundation
+
+@MainActor
+final class SearchViewModel: ObservableObject {
+    @Published var searchText: String = ""
+    @Published var searchScope: SearchScope = .posts
+    @Published var posts: [Post] = []
+    @Published var users: [Profile] = []
+    @Published var isSearching: Bool = false
+
+    enum SearchScope: String, CaseIterable {
+        case posts = "投稿"
+        case users = "ユーザー"
+    }
+
+    private let repository: SearchRepository
+
+    init(repository: SearchRepository = SupabaseSearchRepository()) {
+        self.repository = repository
+    }
+
+    func search() async {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else {
+            posts = []
+            users = []
+            return
+        }
+        isSearching = true
+        do {
+            switch searchScope {
+            case .posts:
+                posts = try await repository.searchPosts(query: query)
+            case .users:
+                users = try await repository.searchUsers(query: query)
+            }
+        } catch {
+            print("[SearchViewModel] search failed: \(error)")
+        }
+        isSearching = false
+    }
+}

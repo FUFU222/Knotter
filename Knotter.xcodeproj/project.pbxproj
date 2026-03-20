@@ -23,6 +23,41 @@
 		A100000E /* UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000E /* UploadViewModel.swift */; };
 		A100000F /* MockPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000F /* MockPosts.swift */; };
 		A1000010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1000010 /* Assets.xcassets */; };
+		A1000011 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000011 /* SupabaseManager.swift */; };
+		A1000012 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000012 /* PostRepository.swift */; };
+		A1000013 /* MockPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000013 /* MockPostRepository.swift */; };
+		A1000014 /* SupabasePostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000014 /* SupabasePostRepository.swift */; };
+		A1000015 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = PP000001 /* Supabase */; };
+		A1000016 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000016 /* AuthViewModel.swift */; };
+		A1000017 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000017 /* AuthView.swift */; };
+		A1000018 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000018 /* Profile.swift */; };
+		A1000019 /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000019 /* ProfileRepository.swift */; };
+		A100001A /* SupabaseProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001A /* SupabaseProfileRepository.swift */; };
+		A100001B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001B /* ProfileViewModel.swift */; };
+		A100001C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001C /* ProfileView.swift */; };
+		A100001D /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001D /* ProfileEditView.swift */; };
+		A100001E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001E /* Comment.swift */; };
+		A100001F /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100001F /* AppNotification.swift */; };
+		A1000020 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000020 /* SearchRepository.swift */; };
+		A1000021 /* SupabaseSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000021 /* SupabaseSearchRepository.swift */; };
+		A1000022 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000022 /* CommentRepository.swift */; };
+		A1000023 /* SupabaseCommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000023 /* SupabaseCommentRepository.swift */; };
+		A1000024 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000024 /* NotificationRepository.swift */; };
+		A1000025 /* SupabaseNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000025 /* SupabaseNotificationRepository.swift */; };
+		A1000026 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000026 /* SearchView.swift */; };
+		A1000027 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000027 /* SearchViewModel.swift */; };
+		A1000028 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000028 /* CommentsView.swift */; };
+		A1000029 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000029 /* CommentsViewModel.swift */; };
+		A100002A /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100002A /* NotificationsView.swift */; };
+		A100002B /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100002B /* NotificationsViewModel.swift */; };
+		A100002C /* FollowRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100002C /* FollowRepository.swift */; };
+		A100002D /* SupabaseFollowRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100002D /* SupabaseFollowRepository.swift */; };
+		A100002E /* KnotTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100002E /* KnotTypeRepository.swift */; };
+		A100002F /* SupabaseKnotTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100002F /* SupabaseKnotTypeRepository.swift */; };
+		A1000030 /* KnotTypeFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000030 /* KnotTypeFilterView.swift */; };
+		A1000031 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000031 /* VideoPlayerView.swift */; };
+		A1000032 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000032 /* UserProfileView.swift */; };
+		A1000033 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000033 /* UserProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +78,40 @@
 		B100000E /* UploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewModel.swift; sourceTree = "<group>"; };
 		B100000F /* MockPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPosts.swift; sourceTree = "<group>"; };
 		B1000010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1000011 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
+		B1000012 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		B1000013 /* MockPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPostRepository.swift; sourceTree = "<group>"; };
+		B1000014 /* SupabasePostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabasePostRepository.swift; sourceTree = "<group>"; };
+		B1000016 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		B1000017 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		B1000018 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		B1000019 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		B100001A /* SupabaseProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseProfileRepository.swift; sourceTree = "<group>"; };
+		B100001B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		B100001C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B100001D /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		B100001E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		B100001F /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
+		B1000020 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		B1000021 /* SupabaseSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSearchRepository.swift; sourceTree = "<group>"; };
+		B1000022 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		B1000023 /* SupabaseCommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseCommentRepository.swift; sourceTree = "<group>"; };
+		B1000024 /* NotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
+		B1000025 /* SupabaseNotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseNotificationRepository.swift; sourceTree = "<group>"; };
+		B1000026 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		B1000027 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		B1000028 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		B1000029 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
+		B100002A /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		B100002B /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		B100002C /* FollowRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRepository.swift; sourceTree = "<group>"; };
+		B100002D /* SupabaseFollowRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseFollowRepository.swift; sourceTree = "<group>"; };
+		B100002E /* KnotTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotTypeRepository.swift; sourceTree = "<group>"; };
+		B100002F /* SupabaseKnotTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseKnotTypeRepository.swift; sourceTree = "<group>"; };
+		B1000030 /* KnotTypeFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotTypeFilterView.swift; sourceTree = "<group>"; };
+		B1000031 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		B1000032 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		B1000033 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1000015 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,8 +168,40 @@
 				E1000005 /* Theme */,
 				E1000006 /* Models */,
 				E1000007 /* Components */,
+				E100000F /* Networking */,
+				E1000010 /* Repository */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		E100000F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B1000011 /* SupabaseManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E1000010 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				B1000012 /* PostRepository.swift */,
+				B1000013 /* MockPostRepository.swift */,
+				B1000014 /* SupabasePostRepository.swift */,
+				B1000019 /* ProfileRepository.swift */,
+				B100001A /* SupabaseProfileRepository.swift */,
+				B1000020 /* SearchRepository.swift */,
+				B1000021 /* SupabaseSearchRepository.swift */,
+				B1000022 /* CommentRepository.swift */,
+				B1000023 /* SupabaseCommentRepository.swift */,
+				B1000024 /* NotificationRepository.swift */,
+				B1000025 /* SupabaseNotificationRepository.swift */,
+				B100002C /* FollowRepository.swift */,
+				B100002D /* SupabaseFollowRepository.swift */,
+				B100002E /* KnotTypeRepository.swift */,
+				B100002F /* SupabaseKnotTypeRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		E1000005 /* Theme */ = {
@@ -117,6 +219,9 @@
 				B1000005 /* MediaType.swift */,
 				B1000006 /* KnotType.swift */,
 				B1000007 /* Post.swift */,
+				B1000018 /* Profile.swift */,
+				B100001E /* Comment.swift */,
+				B100001F /* AppNotification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +231,7 @@
 			children = (
 				B1000008 /* FireLikeButton.swift */,
 				B1000009 /* MediaPlaceholderView.swift */,
+				B1000031 /* VideoPlayerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -133,11 +239,37 @@
 		E100000A /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				E1000011 /* Auth */,
 				E100000B /* Root */,
 				E100000C /* Feed */,
+				E1000013 /* Search */,
 				E100000D /* Upload */,
+				E1000014 /* Comments */,
+				E1000015 /* Notifications */,
+				E1000012 /* Profile */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		E1000012 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B100001B /* ProfileViewModel.swift */,
+				B100001C /* ProfileView.swift */,
+				B100001D /* ProfileEditView.swift */,
+				B1000032 /* UserProfileView.swift */,
+				B1000033 /* UserProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E1000011 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B1000016 /* AuthViewModel.swift */,
+				B1000017 /* AuthView.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		E100000B /* Root */ = {
@@ -154,6 +286,7 @@
 				B100000A /* FeedView.swift */,
 				B100000B /* FeedItemView.swift */,
 				B100000C /* FeedViewModel.swift */,
+				B1000030 /* KnotTypeFilterView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -165,6 +298,33 @@
 				B100000E /* UploadViewModel.swift */,
 			);
 			path = Upload;
+			sourceTree = "<group>";
+		};
+		E1000013 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B1000026 /* SearchView.swift */,
+				B1000027 /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E1000014 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				B1000028 /* CommentsView.swift */,
+				B1000029 /* CommentsViewModel.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		E1000015 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B100002A /* NotificationsView.swift */,
+				B100002B /* NotificationsViewModel.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		E100000E /* Mock */ = {
@@ -191,6 +351,9 @@
 			dependencies = (
 			);
 			name = Knotter;
+			packageProductDependencies = (
+				PP000001 /* Supabase */,
+			);
 			productName = Knotter;
 			productReference = C1000001 /* Knotter.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +383,9 @@
 			);
 			mainGroup = E1000001;
 			productRefGroup = E1000099 /* Products */;
+			packageReferences = (
+				P1000001 /* supabase-swift */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -227,6 +393,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		P1000001 /* supabase-swift */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		PP000001 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = P1000001 /* supabase-swift */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D1000003 /* Resources */ = {
@@ -259,6 +444,40 @@
 				A100000D /* UploadView.swift in Sources */,
 				A100000E /* UploadViewModel.swift in Sources */,
 				A100000F /* MockPosts.swift in Sources */,
+				A1000011 /* SupabaseManager.swift in Sources */,
+				A1000012 /* PostRepository.swift in Sources */,
+				A1000013 /* MockPostRepository.swift in Sources */,
+				A1000014 /* SupabasePostRepository.swift in Sources */,
+				A1000016 /* AuthViewModel.swift in Sources */,
+				A1000017 /* AuthView.swift in Sources */,
+				A1000018 /* Profile.swift in Sources */,
+				A1000019 /* ProfileRepository.swift in Sources */,
+				A100001A /* SupabaseProfileRepository.swift in Sources */,
+				A100001B /* ProfileViewModel.swift in Sources */,
+				A100001C /* ProfileView.swift in Sources */,
+				A100001D /* ProfileEditView.swift in Sources */,
+				A100001E /* Comment.swift in Sources */,
+				A100001F /* AppNotification.swift in Sources */,
+				A1000020 /* SearchRepository.swift in Sources */,
+				A1000021 /* SupabaseSearchRepository.swift in Sources */,
+				A1000022 /* CommentRepository.swift in Sources */,
+				A1000023 /* SupabaseCommentRepository.swift in Sources */,
+				A1000024 /* NotificationRepository.swift in Sources */,
+				A1000025 /* SupabaseNotificationRepository.swift in Sources */,
+				A1000026 /* SearchView.swift in Sources */,
+				A1000027 /* SearchViewModel.swift in Sources */,
+				A1000028 /* CommentsView.swift in Sources */,
+				A1000029 /* CommentsViewModel.swift in Sources */,
+				A100002A /* NotificationsView.swift in Sources */,
+				A100002B /* NotificationsViewModel.swift in Sources */,
+				A100002C /* FollowRepository.swift in Sources */,
+				A100002D /* SupabaseFollowRepository.swift in Sources */,
+				A100002E /* KnotTypeRepository.swift in Sources */,
+				A100002F /* SupabaseKnotTypeRepository.swift in Sources */,
+				A1000030 /* KnotTypeFilterView.swift in Sources */,
+				A1000031 /* VideoPlayerView.swift in Sources */,
+				A1000032 /* UserProfileView.swift in Sources */,
+				A1000033 /* UserProfileViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

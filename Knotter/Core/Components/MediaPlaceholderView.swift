@@ -8,21 +8,42 @@ struct MediaPlaceholderView: View {
         ZStack {
             Color.darkBackground
 
-            // Attempt to load asset image; fall back to placeholder
-            if let uiImage = UIImage(named: assetName) {
+            if mediaType == .video, assetName.hasPrefix("http"), let url = URL(string: assetName) {
+                VideoPlayerView(url: url)
+            } else if assetName.hasPrefix("http") {
+                AsyncImage(url: URL(string: assetName)) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    case .failure:
+                        placeholderView
+                    case .empty:
+                        ProgressView()
+                            .tint(.rescueOrange)
+                    @unknown default:
+                        placeholderView
+                    }
+                }
+            } else if let uiImage = UIImage(named: assetName) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFill()
             } else {
-                VStack(spacing: AppTheme.smallSpacing) {
-                    Image(systemName: mediaType == .video ? "video.fill" : "photo.fill")
-                        .font(.system(size: 48))
-                        .foregroundColor(.subtleGray)
-                    Text(mediaType == .video ? "動画" : "写真")
-                        .font(.caption)
-                        .foregroundColor(.subtleGray)
-                }
+                placeholderView
             }
+        }
+    }
+
+    private var placeholderView: some View {
+        VStack(spacing: AppTheme.smallSpacing) {
+            Image(systemName: mediaType == .video ? "video.fill" : "photo.fill")
+                .font(.system(size: 48))
+                .foregroundColor(.subtleGray)
+            Text(mediaType == .video ? "動画" : "写真")
+                .font(.caption)
+                .foregroundColor(.subtleGray)
         }
     }
 }
