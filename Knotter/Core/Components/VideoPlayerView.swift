@@ -6,6 +6,7 @@ struct VideoPlayerView: View {
     let url: URL
     @State private var player: AVPlayer?
     @State private var isPlaying = false
+    @State private var loopObserver: Any?
 
     var body: some View {
         ZStack {
@@ -13,9 +14,6 @@ struct VideoPlayerView: View {
 
             if let player {
                 VideoPlayer(player: player)
-                    .onDisappear {
-                        player.pause()
-                    }
             } else {
                 ProgressView()
                     .tint(.rescueOrange)
@@ -39,6 +37,9 @@ struct VideoPlayerView: View {
         .onAppear {
             setupPlayer()
         }
+        .onDisappear {
+            cleanupPlayer()
+        }
     }
 
     private func setupPlayer() {
@@ -46,8 +47,8 @@ struct VideoPlayerView: View {
         avPlayer.isMuted = false
         self.player = avPlayer
 
-        // ループ再生
-        NotificationCenter.default.addObserver(
+        // ループ再生（observerを保持して後で解除）
+        loopObserver = NotificationCenter.default.addObserver(
             forName: .AVPlayerItemDidPlayToEndTime,
             object: avPlayer.currentItem,
             queue: .main
@@ -58,6 +59,16 @@ struct VideoPlayerView: View {
 
         avPlayer.play()
         isPlaying = true
+    }
+
+    private func cleanupPlayer() {
+        player?.pause()
+        if let observer = loopObserver {
+            NotificationCenter.default.removeObserver(observer)
+            loopObserver = nil
+        }
+        player = nil
+        isPlaying = false
     }
 
     private func togglePlayback() {

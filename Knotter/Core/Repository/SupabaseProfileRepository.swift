@@ -10,54 +10,6 @@ final class SupabaseProfileRepository: ProfileRepository {
         self.client = client
     }
 
-    // MARK: - DTO
-
-    private struct PostDTO: Decodable {
-        let id: UUID
-        let userId: UUID
-        let mediaType: String
-        let mediaUrl: String
-        let thumbnailUrl: String?
-        let caption: String?
-        let likeCount: Int
-        let createdAt: String
-        let profiles: ProfileDTO
-        let knotTypes: KnotTypeDTO
-
-        enum CodingKeys: String, CodingKey {
-            case id
-            case userId = "user_id"
-            case mediaType = "media_type"
-            case mediaUrl = "media_url"
-            case thumbnailUrl = "thumbnail_url"
-            case caption
-            case likeCount = "like_count"
-            case createdAt = "created_at"
-            case profiles
-            case knotTypes = "knot_types"
-        }
-    }
-
-    private struct ProfileDTO: Decodable {
-        let username: String
-        let avatarUrl: String?
-
-        enum CodingKeys: String, CodingKey {
-            case username
-            case avatarUrl = "avatar_url"
-        }
-    }
-
-    private struct KnotTypeDTO: Decodable {
-        let slug: String
-        let displayName: String
-
-        enum CodingKeys: String, CodingKey {
-            case slug
-            case displayName = "display_name"
-        }
-    }
-
     // MARK: - ProfileRepository
 
     func fetchMyProfile() async throws -> Profile {
@@ -89,7 +41,7 @@ final class SupabaseProfileRepository: ProfileRepository {
     }
 
     func fetchUserPosts(userId: UUID) async throws -> [Post] {
-        let dtos: [PostDTO] = try await client
+        let dtos: [SupabasePostDTO] = try await client
             .from("posts")
             .select("*, profiles(username, avatar_url), knot_types(slug, display_name)")
             .eq("user_id", value: userId.uuidString)
@@ -97,19 +49,7 @@ final class SupabaseProfileRepository: ProfileRepository {
             .execute()
             .value
 
-        return dtos.map { dto in
-            Post(
-                id: dto.id,
-                userId: dto.userId,
-                username: dto.profiles.username,
-                mediaType: MediaType(rawValue: dto.mediaType) ?? .image,
-                mediaUrl: dto.mediaUrl,
-                caption: dto.caption ?? "",
-                knotType: KnotType(rawValue: dto.knotTypes.slug) ?? .bowline,
-                likeCount: dto.likeCount,
-                isLiked: false
-            )
-        }
+        return dtos.map { $0.toPost() }
     }
 
     func uploadAvatar(userId: UUID, imageData: Data) async throws -> String {

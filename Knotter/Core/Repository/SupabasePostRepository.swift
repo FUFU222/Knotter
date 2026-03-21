@@ -10,54 +10,6 @@ final class SupabasePostRepository: PostRepository {
         self.client = client
     }
 
-    // MARK: - DTO (Supabaseレスポンス用)
-
-    private struct PostDTO: Decodable {
-        let id: UUID
-        let userId: UUID
-        let mediaType: String
-        let mediaUrl: String
-        let thumbnailUrl: String?
-        let caption: String?
-        let likeCount: Int
-        let createdAt: String
-        let profiles: ProfileDTO
-        let knotTypes: KnotTypeDTO
-
-        enum CodingKeys: String, CodingKey {
-            case id
-            case userId = "user_id"
-            case mediaType = "media_type"
-            case mediaUrl = "media_url"
-            case thumbnailUrl = "thumbnail_url"
-            case caption
-            case likeCount = "like_count"
-            case createdAt = "created_at"
-            case profiles
-            case knotTypes = "knot_types"
-        }
-    }
-
-    private struct ProfileDTO: Decodable {
-        let username: String
-        let avatarUrl: String?
-
-        enum CodingKeys: String, CodingKey {
-            case username
-            case avatarUrl = "avatar_url"
-        }
-    }
-
-    private struct KnotTypeDTO: Decodable {
-        let slug: String
-        let displayName: String
-
-        enum CodingKeys: String, CodingKey {
-            case slug
-            case displayName = "display_name"
-        }
-    }
-
     private struct LikeRow: Codable {
         let userId: UUID
         let postId: UUID
@@ -71,13 +23,18 @@ final class SupabasePostRepository: PostRepository {
     // MARK: - PostRepository
 
     func fetchPosts() async throws -> [Post] {
+        try await fetchPosts(limit: 20, offset: 0)
+    }
+
+    func fetchPosts(limit: Int, offset: Int) async throws -> [Post] {
         // 現在のユーザーがいいね済みか判定するためにuser_idを取得
         let currentUserId = try? await client.auth.session.user.id
 
-        let dtos: [PostDTO] = try await client
+        let dtos: [SupabasePostDTO] = try await client
             .from("posts")
             .select("*, profiles(username, avatar_url), knot_types(slug, display_name)")
             .order("created_at", ascending: false)
+            .range(from: offset, to: offset + limit - 1)
             .execute()
             .value
 
@@ -90,28 +47,20 @@ final class SupabasePostRepository: PostRepository {
                     case postId = "post_id"
                 }
             }
-            let likes: [LikeRecord] = try await client
-                .from("likes")
-                .select("post_id")
-                .eq("user_id", value: userId.uuidString)
-                .execute()
-                .value
-            likedPostIds = Set(likes.map(\.postId))
+            let postIds = dtos.map(\.id)
+            if !postIds.isEmpty {
+                let likes: [LikeRecord] = try await client
+                    .from("likes")
+                    .select("post_id")
+                    .eq("user_id", value: userId.uuidString)
+                    .in("post_id", values: postIds.map(\.uuidString))
+                    .execute()
+                    .value
+                likedPostIds = Set(likes.map(\.postId))
+            }
         }
 
-        return dtos.map { dto in
-            Post(
-                id: dto.id,
-                userId: dto.userId,
-                username: dto.profiles.username,
-                mediaType: MediaType(rawValue: dto.mediaType) ?? .image,
-                mediaUrl: dto.mediaUrl,
-                caption: dto.caption ?? "",
-                knotType: KnotType(rawValue: dto.knotTypes.slug) ?? .bowline,
-                likeCount: dto.likeCount,
-                isLiked: likedPostIds.contains(dto.id)
-            )
-        }
+        return dtos.map { $0.toPost(isLiked: likedPostIds.contains($0.id)) }
     }
 
     func toggleLike(postId: UUID) async throws -> Bool {

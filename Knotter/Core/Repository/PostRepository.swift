@@ -6,6 +6,9 @@ protocol PostRepository {
     /// フィード用の投稿一覧を取得
     func fetchPosts() async throws -> [Post]
 
+    /// ページネーション付きフィード取得
+    func fetchPosts(limit: Int, offset: Int) async throws -> [Post]
+
     /// いいねをトグル（認証実装後に有効化）
     func toggleLike(postId: UUID) async throws -> Bool
 

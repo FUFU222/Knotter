@@ -58,6 +58,11 @@
 		A1000031 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000031 /* VideoPlayerView.swift */; };
 		A1000032 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000032 /* UserProfileView.swift */; };
 		A1000033 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000033 /* UserProfileViewModel.swift */; };
+		A1000034 /* SupabaseDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000034 /* SupabaseDTOs.swift */; };
+		A1000035 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1000035 /* Secrets.plist */; };
+		A1000036 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000036 /* TermsOfServiceView.swift */; };
+		A1000037 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000037 /* PrivacyPolicyView.swift */; };
+		A1000038 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B1000038 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +117,11 @@
 		B1000031 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		B1000032 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		B1000033 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		B1000034 /* SupabaseDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDTOs.swift; sourceTree = "<group>"; };
+		B1000035 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		B1000036 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
+		B1000037 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		B1000038 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +160,8 @@
 				E100000A /* Features */,
 				E100000E /* Mock */,
 				B1000010 /* Assets.xcassets */,
+				B1000035 /* Secrets.plist */,
+				B1000038 /* Localizable.xcstrings */,
 			);
 			path = Knotter;
 			sourceTree = "<group>";
@@ -178,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				B1000011 /* SupabaseManager.swift */,
+				B1000034 /* SupabaseDTOs.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -247,6 +260,7 @@
 				E1000014 /* Comments */,
 				E1000015 /* Notifications */,
 				E1000012 /* Profile */,
+				E1000016 /* Legal */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -335,6 +349,15 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		E1000016 /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				B1000036 /* TermsOfServiceView.swift */,
+				B1000037 /* PrivacyPolicyView.swift */,
+			);
+			path = Legal;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,6 +402,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				ja,
+				en,
 				Base,
 			);
 			mainGroup = E1000001;
@@ -419,6 +443,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000010 /* Assets.xcassets in Resources */,
+				A1000035 /* Secrets.plist in Resources */,
+				A1000038 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +504,9 @@
 				A1000031 /* VideoPlayerView.swift in Sources */,
 				A1000032 /* UserProfileView.swift in Sources */,
 				A1000033 /* UserProfileViewModel.swift in Sources */,
+				A1000034 /* SupabaseDTOs.swift in Sources */,
+				A1000036 /* TermsOfServiceView.swift in Sources */,
+				A1000037 /* PrivacyPolicyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

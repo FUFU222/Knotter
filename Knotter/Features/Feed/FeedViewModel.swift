@@ -10,6 +10,9 @@ final class FeedViewModel: ObservableObject {
 
     private let repository: PostRepository
     private let knotTypeRepository: KnotTypeRepository
+    private let pageSize = 20
+    private var hasMorePages = true
+    private var isLoadingMore = false
 
     /// フィルタ済みの投稿一覧
     var filteredPosts: [Post] {
@@ -27,12 +30,15 @@ final class FeedViewModel: ObservableObject {
         self.knotTypeRepository = knotTypeRepository
     }
 
-    /// フィードを読み込む
+    /// フィードを読み込む（先頭ページ）
     func loadFeed() async {
         isLoading = true
         errorMessage = nil
+        hasMorePages = true
         do {
-            posts = try await repository.fetchPosts()
+            let fetched = try await repository.fetchPosts(limit: pageSize, offset: 0)
+            posts = fetched
+            hasMorePages = fetched.count >= pageSize
         } catch {
             errorMessage = String(localized: "error_feed_load")
             // フォールバック: モックデータを表示
@@ -40,6 +46,25 @@ final class FeedViewModel: ObservableObject {
             print("[FeedViewModel] Supabase fetch failed, using mock: \(error)")
         }
         isLoading = false
+    }
+
+    /// 追加ページを読み込む（無限スクロール）
+    func loadMoreIfNeeded(currentPost: Post) async {
+        // 最後から3番目の投稿が表示されたら次ページを取得
+        guard let index = filteredPosts.firstIndex(where: { $0.id == currentPost.id }),
+              index >= filteredPosts.count - 3,
+              hasMorePages,
+              !isLoadingMore else { return }
+
+        isLoadingMore = true
+        do {
+            let fetched = try await repository.fetchPosts(limit: pageSize, offset: posts.count)
+            posts.append(contentsOf: fetched)
+            hasMorePages = fetched.count >= pageSize
+        } catch {
+            print("[FeedViewModel] loadMore failed: \(error)")
+        }
+        isLoadingMore = false
     }
 
     /// 結び目タイプ一覧を読み込む
@@ -66,9 +91,10 @@ final class FeedViewModel: ObservableObject {
             do {
                 _ = try await repository.toggleLike(postId: postId)
             } catch {
-                // 失敗時はローカル状態を戻す
-                posts[index].isLiked.toggle()
-                posts[index].likeCount += posts[index].isLiked ? 1 : -1
+                // 失敗時はローカル状態を戻す（postIdで再検索して安全にアクセス）
+                guard let i = self.posts.firstIndex(where: { $0.id == postId }) else { return }
+                self.posts[i].isLiked.toggle()
+                self.posts[i].likeCount += self.posts[i].isLiked ? 1 : -1
                 print("[FeedViewModel] toggleLike failed: \(error)")
             }
         }

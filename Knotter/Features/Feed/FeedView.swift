@@ -36,6 +36,9 @@ struct FeedView: View {
                                     )
                                     .frame(width: geometry.size.width, height: geometry.size.height)
                                     .rotationEffect(.degrees(-90))
+                                    .task {
+                                        await viewModel.loadMoreIfNeeded(currentPost: post)
+                                    }
                                 }
                             }
                             .frame(width: geometry.size.height, height: geometry.size.width)

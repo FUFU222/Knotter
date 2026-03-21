@@ -5,9 +5,16 @@ import Foundation
 final class MockPostRepository: PostRepository {
 
     func fetchPosts() async throws -> [Post] {
+        try await fetchPosts(limit: 20, offset: 0)
+    }
+
+    func fetchPosts(limit: Int, offset: Int) async throws -> [Post] {
         // 少し遅延を入れてローディング体験を再現
         try await Task.sleep(nanoseconds: 300_000_000)
-        return MockPosts.samples
+        let all = MockPosts.samples
+        let start = min(offset, all.count)
+        let end = min(offset + limit, all.count)
+        return Array(all[start..<end])
     }
 
     func toggleLike(postId: UUID) async throws -> Bool {

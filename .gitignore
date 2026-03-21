@@ -28,6 +28,9 @@ build/
 .build/
 Package.resolved
 
+# Secrets
+Secrets.plist
+
 # Misc
 *.swp
 *~
