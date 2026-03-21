@@ -13,7 +13,11 @@ struct ContentView: View {
     }
 
     var body: some View {
-        TabView(selection: $selectedTab) {
+        VStack(spacing: 0) {
+            OfflineBannerView()
+                .animation(AppTheme.springSnappy, value: NetworkMonitor.shared.isConnected)
+
+            TabView(selection: $selectedTab) {
             FeedView()
                 .tabItem {
                     Image(systemName: "house.fill")
@@ -49,6 +53,7 @@ struct ContentView: View {
                     Text(String(localized: "tab_profile"))
                 }
                 .tag(Tab.profile)
+        }
         }
         .tint(.rescueOrange)
         .onAppear {

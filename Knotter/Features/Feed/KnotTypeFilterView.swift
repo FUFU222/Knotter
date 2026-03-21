@@ -4,19 +4,34 @@ import SwiftUI
 struct KnotTypeFilterView: View {
     let knotTypes: [KnotType]
     @Binding var selectedKnotType: KnotType?
+    @Namespace private var chipAnimation
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: AppTheme.smallSpacing) {
                 // 「すべて」チップ
-                chipButton(label: String(localized: "filter_all"), isSelected: selectedKnotType == nil) {
-                    selectedKnotType = nil
+                chipButton(
+                    id: "all",
+                    label: String(localized: "filter_all"),
+                    isSelected: selectedKnotType == nil
+                ) {
+                    withAnimation(AppTheme.springSnappy) {
+                        selectedKnotType = nil
+                    }
+                    Haptics.selection()
                 }
 
                 // 各KnotTypeチップ
                 ForEach(knotTypes) { knotType in
-                    chipButton(label: knotType.displayName, isSelected: selectedKnotType == knotType) {
-                        selectedKnotType = knotType
+                    chipButton(
+                        id: knotType.rawValue,
+                        label: knotType.displayName,
+                        isSelected: selectedKnotType == knotType
+                    ) {
+                        withAnimation(AppTheme.springSnappy) {
+                            selectedKnotType = knotType
+                        }
+                        Haptics.selection()
                     }
                 }
             }
@@ -26,7 +41,7 @@ struct KnotTypeFilterView: View {
     }
 
     @ViewBuilder
-    private func chipButton(label: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+    private func chipButton(id: String, label: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Text(label)
                 .font(.subheadline)
@@ -34,8 +49,16 @@ struct KnotTypeFilterView: View {
                 .foregroundColor(isSelected ? .white : .subtleGray)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(isSelected ? Color.rescueOrange : Color.cardBackground)
-                .cornerRadius(AppTheme.cornerRadius)
+                .background {
+                    if isSelected {
+                        Capsule()
+                            .fill(LinearGradient.orangeGlow)
+                            .matchedGeometryEffect(id: "chipBg", in: chipAnimation)
+                    } else {
+                        Capsule()
+                            .fill(Color.cardBackground)
+                    }
+                }
         }
     }
 }

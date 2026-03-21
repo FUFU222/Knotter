@@ -63,6 +63,19 @@ struct SearchView: View {
             .navigationDestination(for: UUID.self) { userId in
                 UserProfileView(userId: userId)
             }
+            .alert(
+                String(localized: "upload_error_title"),
+                isPresented: Binding(
+                    get: { viewModel.errorMessage != nil },
+                    set: { if !$0 { viewModel.errorMessage = nil } }
+                )
+            ) {
+                Button(String(localized: "common_cancel"), role: .cancel) {}
+            } message: {
+                if let msg = viewModel.errorMessage {
+                    Text(msg)
+                }
+            }
         }
     }
 

@@ -5,6 +5,7 @@ struct UserProfileView: View {
     let userId: UUID
     @StateObject private var viewModel: UserProfileViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var showReportSheet = false
 
     init(userId: UUID) {
         self.userId = userId
@@ -51,8 +52,47 @@ struct UserProfileView: View {
         .navigationTitle(viewModel.profile?.username ?? String(localized: "profile_title"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button(role: .destructive) {
+                        showReportSheet = true
+                    } label: {
+                        Label(String(localized: "report_user"), systemImage: "exclamationmark.triangle")
+                    }
+                    Button(role: .destructive) {
+                        Task {
+                            let repo = SupabaseReportRepository()
+                            try? await repo.blockUser(userId: userId)
+                            dismiss()
+                        }
+                    } label: {
+                        Label(String(localized: "block_user"), systemImage: "nosign")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        .sheet(isPresented: $showReportSheet) {
+            ReportSheet(targetType: .user(userId))
+        }
         .task {
             await viewModel.load()
+        }
+        .alert(
+            String(localized: "upload_error_title"),
+            isPresented: Binding(
+                get: { viewModel.errorMessage != nil },
+                set: { if !$0 { viewModel.errorMessage = nil } }
+            )
+        ) {
+            Button(String(localized: "common_cancel"), role: .cancel) {}
+        } message: {
+            if let msg = viewModel.errorMessage {
+                Text(msg)
+            }
         }
     }
 
@@ -100,21 +140,23 @@ struct UserProfileView: View {
 
     private var statsRow: some View {
         HStack(spacing: 0) {
-            statItem(value: "\(viewModel.postCount)", label: String(localized: "profile_posts"))
+            statItem(value: viewModel.postCount, label: String(localized: "profile_posts"))
             Divider().frame(height: 32).background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followerCount)", label: String(localized: "profile_followers"))
+            statItem(value: viewModel.followerCount, label: String(localized: "profile_followers"))
             Divider().frame(height: 32).background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followingCount)", label: String(localized: "profile_following"))
+            statItem(value: viewModel.followingCount, label: String(localized: "profile_following"))
         }
         .padding(.horizontal, AppTheme.spacing)
     }
 
-    private func statItem(value: String, label: String) -> some View {
+    private func statItem(value: Int, label: String) -> some View {
         VStack(spacing: 4) {
-            Text(value)
+            Text("\(value)")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
+                .contentTransition(.numericText())
+                .animation(AppTheme.springSnappy, value: value)
             Text(label)
                 .font(.caption)
                 .foregroundColor(.subtleGray)
@@ -126,6 +168,7 @@ struct UserProfileView: View {
 
     private var followButton: some View {
         Button {
+            Haptics.medium()
             Task { await viewModel.toggleFollow() }
         } label: {
             HStack(spacing: 6) {
@@ -137,9 +180,15 @@ struct UserProfileView: View {
             .foregroundColor(viewModel.isFollowing ? .subtleGray : .white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
-            .background(viewModel.isFollowing ? Color.cardBackground : Color.rescueOrange)
+            .background(
+                viewModel.isFollowing
+                    ? AnyShapeStyle(Color.cardBackground)
+                    : AnyShapeStyle(LinearGradient.orangeGlow)
+            )
             .cornerRadius(AppTheme.cornerRadius)
+            .animation(AppTheme.springSnappy, value: viewModel.isFollowing)
         }
+        .pressAnimation()
         .disabled(viewModel.isTogglingFollow)
         .padding(.horizontal, AppTheme.spacing)
     }

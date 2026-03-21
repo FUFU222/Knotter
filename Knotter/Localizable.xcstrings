@@ -945,6 +945,22 @@
         }
       }
     },
+    "common_retry" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再読み込み"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
     "common_save" : {
       "localizations" : {
         "ja" : {
@@ -1249,6 +1265,162 @@
       "localizations" : {
         "ja" : { "stringUnit" : { "state" : "translated", "value" : "投稿の読み込みに失敗しました" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to load posts" } }
+      }
+    },
+    "error_load_comments" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "コメントの読み込みに失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to load comments" } }
+      }
+    },
+    "error_send_comment" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "コメントの送信に失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to send comment" } }
+      }
+    },
+    "error_delete_comment" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "コメントの削除に失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to delete comment" } }
+      }
+    },
+    "error_search" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "検索に失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search failed" } }
+      }
+    },
+    "error_load_notifications" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "通知の読み込みに失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to load notifications" } }
+      }
+    },
+    "error_mark_read" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "既読処理に失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to mark as read" } }
+      }
+    },
+    "error_load_profile" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "プロフィールの読み込みに失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to load profile" } }
+      }
+    },
+    "error_follow" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "フォロー処理に失敗しました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed to update follow status" } }
+      }
+    },
+    "error_username_empty" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ユーザー名を入力してください" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please enter a username" } }
+      }
+    },
+    "error_username_too_short" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ユーザー名は3文字以上で入力してください" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Username must be at least 3 characters" } }
+      }
+    },
+    "error_username_too_long" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ユーザー名は20文字以内で入力してください" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Username must be 20 characters or less" } }
+      }
+    },
+    "error_username_invalid_chars" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ユーザー名には英数字、アンダースコア、ドットのみ使用できます" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Username can only contain letters, numbers, underscores, and dots" } }
+      }
+    },
+    "error_network" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ネットワーク接続を確認してください" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please check your network connection" } }
+      }
+    },
+    "report_title" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "通報" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Report" } }
+      }
+    },
+    "report_select_reason" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "通報理由を選択してください" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select a reason for reporting" } }
+      }
+    },
+    "report_submit" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "通報する" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Submit Report" } }
+      }
+    },
+    "report_success_title" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "通報を受け付けました" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Report Submitted" } }
+      }
+    },
+    "report_success_message" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ご報告ありがとうございます。内容を確認いたします。" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Thank you for your report. We will review it shortly." } }
+      }
+    },
+    "report_reason_spam" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "スパム" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Spam" } }
+      }
+    },
+    "report_reason_harassment" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "嫌がらせ・いじめ" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Harassment or Bullying" } }
+      }
+    },
+    "report_reason_inappropriate" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "不適切なコンテンツ" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Inappropriate Content" } }
+      }
+    },
+    "report_reason_impersonation" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "なりすまし" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Impersonation" } }
+      }
+    },
+    "report_reason_other" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "その他" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Other" } }
+      }
+    },
+    "report_post" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "投稿を通報" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Report Post" } }
+      }
+    },
+    "report_user" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ユーザーを通報" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Report User" } }
+      }
+    },
+    "block_user" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ブロック" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Block User" } }
       }
     },
     "legal_privacy" : {

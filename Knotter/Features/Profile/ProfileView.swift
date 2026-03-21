@@ -35,6 +35,7 @@ struct ProfileView: View {
 
                             // Edit button
                             Button {
+                                Haptics.light()
                                 viewModel.startEditing()
                             } label: {
                                 Text(String(localized: "profile_edit"))
@@ -48,6 +49,7 @@ struct ProfileView: View {
                                             .stroke(Color.rescueOrange, lineWidth: 1.5)
                                     )
                             }
+                            .pressAnimation()
                             .padding(.horizontal, AppTheme.spacing)
 
                             // My Posts Grid
@@ -163,25 +165,27 @@ struct ProfileView: View {
 
     private var statsRow: some View {
         HStack(spacing: 0) {
-            statItem(value: "\(viewModel.postCount)", label: String(localized: "profile_posts"))
+            statItem(value: viewModel.postCount, label: String(localized: "profile_posts"))
             Divider()
                 .frame(height: 32)
                 .background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followerCount)", label: String(localized: "profile_followers"))
+            statItem(value: viewModel.followerCount, label: String(localized: "profile_followers"))
             Divider()
                 .frame(height: 32)
                 .background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followingCount)", label: String(localized: "profile_following"))
+            statItem(value: viewModel.followingCount, label: String(localized: "profile_following"))
         }
         .padding(.horizontal, AppTheme.spacing)
     }
 
-    private func statItem(value: String, label: String) -> some View {
+    private func statItem(value: Int, label: String) -> some View {
         VStack(spacing: 4) {
-            Text(value)
+            Text("\(value)")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
+                .contentTransition(.numericText())
+                .animation(AppTheme.springSnappy, value: value)
             Text(label)
                 .font(.caption)
                 .foregroundColor(.subtleGray)

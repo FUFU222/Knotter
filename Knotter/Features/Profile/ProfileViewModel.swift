@@ -26,6 +26,31 @@ final class ProfileViewModel: ObservableObject {
     private let followRepository: FollowRepository
 
     static let maxBioLength = 160
+    static let minUsernameLength = 3
+    static let maxUsernameLength = 20
+    /// ユーザー名に使用可能: 英数字、アンダースコア、ドット
+    static let usernameRegex = /^[a-zA-Z0-9_.]+$/
+
+    var usernameValidationError: String? {
+        let name = editingUsername.trimmingCharacters(in: .whitespacesAndNewlines)
+        if name.isEmpty {
+            return String(localized: "error_username_empty")
+        }
+        if name.count < Self.minUsernameLength {
+            return String(localized: "error_username_too_short")
+        }
+        if name.count > Self.maxUsernameLength {
+            return String(localized: "error_username_too_long")
+        }
+        if name.wholeMatch(of: Self.usernameRegex) == nil {
+            return String(localized: "error_username_invalid_chars")
+        }
+        return nil
+    }
+
+    var canSaveProfile: Bool {
+        usernameValidationError == nil && !isSaving
+    }
 
     init(
         profileRepository: ProfileRepository = SupabaseProfileRepository(),
@@ -91,8 +116,18 @@ final class ProfileViewModel: ObservableObject {
         }
     }
 
+    func enforceMaxUsername() {
+        if editingUsername.count > Self.maxUsernameLength {
+            editingUsername = String(editingUsername.prefix(Self.maxUsernameLength))
+        }
+    }
+
     func saveProfile() async {
         guard let userId = profile?.id else { return }
+        guard usernameValidationError == nil else {
+            errorMessage = usernameValidationError
+            return
+        }
         isSaving = true
         do {
             let payload = Profile.UpdatePayload(
@@ -123,8 +158,9 @@ final class ProfileViewModel: ObservableObject {
     }
 
     private func uploadAvatar(uiImage: UIImage) async {
+        let resized = ImageResizer.resize(uiImage, maxDimension: 400)
         guard let userId = profile?.id,
-              let jpegData = uiImage.jpegData(compressionQuality: 0.8) else { return }
+              let jpegData = resized.jpegData(compressionQuality: 0.8) else { return }
         isUploadingAvatar = true
         do {
             let url = try await profileRepository.uploadAvatar(userId: userId, imageData: jpegData)

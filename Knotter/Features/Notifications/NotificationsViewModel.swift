@@ -5,6 +5,7 @@ final class NotificationsViewModel: ObservableObject {
     @Published var notifications: [AppNotification] = []
     @Published var isLoading: Bool = false
     @Published var unreadCount: Int = 0
+    @Published var errorMessage: String?
 
     private let repository: NotificationRepository
 
@@ -14,10 +15,12 @@ final class NotificationsViewModel: ObservableObject {
 
     func loadNotifications() async {
         isLoading = true
+        errorMessage = nil
         do {
             notifications = try await repository.fetchNotifications()
             unreadCount = notifications.filter { !$0.isRead }.count
         } catch {
+            errorMessage = String(localized: "error_load_notifications")
             print("[NotificationsViewModel] fetch failed: \(error)")
         }
         isLoading = false
@@ -55,6 +58,7 @@ final class NotificationsViewModel: ObservableObject {
             }
             unreadCount = 0
         } catch {
+            errorMessage = String(localized: "error_mark_read")
             print("[NotificationsViewModel] markAllAsRead failed: \(error)")
         }
     }

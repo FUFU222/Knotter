@@ -17,11 +17,13 @@ struct MediaPlaceholderView: View {
                         image
                             .resizable()
                             .scaledToFill()
+                            .transition(.opacity.animation(.easeOut(duration: 0.3)))
                     case .failure:
                         placeholderView
+                            .transition(.opacity)
                     case .empty:
-                        ProgressView()
-                            .tint(.rescueOrange)
+                        // シマーローディング
+                        ShimmerView()
                     @unknown default:
                         placeholderView
                     }

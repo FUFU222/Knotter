@@ -42,8 +42,11 @@ final class UploadViewModel: ObservableObject {
 
     func submit() {
         guard let image = selectedImage,
-              let imageData = image.jpegData(compressionQuality: 0.8),
               let knotType = selectedKnotType else { return }
+
+        // 画像を1080px以下にリサイズしてからJPEG化
+        let resized = ImageResizer.resize(image, maxDimension: 1080)
+        guard let imageData = resized.jpegData(compressionQuality: 0.8) else { return }
 
         isSubmitting = true
         errorMessage = nil

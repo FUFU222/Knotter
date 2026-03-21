@@ -7,6 +7,7 @@ final class SearchViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var users: [Profile] = []
     @Published var isSearching: Bool = false
+    @Published var errorMessage: String?
 
     enum SearchScope: CaseIterable {
         case posts
@@ -34,6 +35,7 @@ final class SearchViewModel: ObservableObject {
             return
         }
         isSearching = true
+        errorMessage = nil
         do {
             switch searchScope {
             case .posts:
@@ -42,6 +44,7 @@ final class SearchViewModel: ObservableObject {
                 users = try await repository.searchUsers(query: query)
             }
         } catch {
+            errorMessage = String(localized: "error_search")
             print("[SearchViewModel] search failed: \(error)")
         }
         isSearching = false

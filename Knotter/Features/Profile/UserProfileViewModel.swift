@@ -10,6 +10,7 @@ final class UserProfileViewModel: ObservableObject {
     @Published var isTogglingFollow: Bool = false
     @Published var followerCount: Int = 0
     @Published var followingCount: Int = 0
+    @Published var errorMessage: String?
 
     let userId: UUID
 
@@ -30,6 +31,7 @@ final class UserProfileViewModel: ObservableObject {
 
     func load() async {
         isLoading = true
+        errorMessage = nil
         do {
             async let profileTask = profileRepository.fetchProfile(userId: userId)
             async let postsTask = profileRepository.fetchUserPosts(userId: userId)
@@ -47,6 +49,7 @@ final class UserProfileViewModel: ObservableObject {
             followerCount = followers.count
             followingCount = followingList.count
         } catch {
+            errorMessage = String(localized: "error_load_profile")
             print("[UserProfileViewModel] load error: \(error)")
         }
         isLoading = false
@@ -65,6 +68,7 @@ final class UserProfileViewModel: ObservableObject {
                 followerCount += 1
             }
         } catch {
+            errorMessage = String(localized: "error_follow")
             print("[UserProfileViewModel] toggleFollow error: \(error)")
         }
         isTogglingFollow = false

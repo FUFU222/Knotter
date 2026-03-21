@@ -4,7 +4,7 @@ import Supabase
 @MainActor
 final class AuthViewModel: ObservableObject {
 
-    enum AuthState {
+    enum AuthState: Equatable {
         case loading
         case unauthenticated
         case authenticated
