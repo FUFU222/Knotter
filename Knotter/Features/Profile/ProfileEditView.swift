@@ -51,7 +51,7 @@ struct ProfileEditView: View {
 
                         // Username
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("ユーザー名")
+                            Text(String(localized: "edit_username"))
                                 .font(.caption)
                                 .foregroundColor(.subtleGray)
                             TextField("@username", text: $viewModel.editingUsername)
@@ -65,10 +65,10 @@ struct ProfileEditView: View {
 
                         // Display name
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("表示名")
+                            Text(String(localized: "edit_display_name"))
                                 .font(.caption)
                                 .foregroundColor(.subtleGray)
-                            TextField("表示名（任意）", text: $viewModel.editingDisplayName)
+                            TextField(String(localized: "edit_display_name_hint"), text: $viewModel.editingDisplayName)
                                 .padding(14)
                                 .background(Color.cardBackground)
                                 .cornerRadius(AppTheme.cornerRadius)
@@ -77,10 +77,10 @@ struct ProfileEditView: View {
 
                         // Bio
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("自己紹介")
+                            Text(String(localized: "edit_bio"))
                                 .font(.caption)
                                 .foregroundColor(.subtleGray)
-                            TextField("自己紹介（任意）", text: $viewModel.editingBio, axis: .vertical)
+                            TextField(String(localized: "edit_bio_hint"), text: $viewModel.editingBio, axis: .vertical)
                                 .lineLimit(3...5)
                                 .padding(14)
                                 .background(Color.cardBackground)
@@ -111,7 +111,7 @@ struct ProfileEditView: View {
                                     ProgressView()
                                         .tint(.white)
                                 } else {
-                                    Text("保存")
+                                    Text(String(localized: "common_save"))
                                         .fontWeight(.bold)
                                 }
                             }
@@ -126,12 +126,12 @@ struct ProfileEditView: View {
                     .padding(AppTheme.spacing)
                 }
             }
-            .navigationTitle("プロフィール編集")
+            .navigationTitle(String(localized: "profile_edit"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("キャンセル") {
+                    Button(String(localized: "common_cancel")) {
                         viewModel.cancelEditing()
                         dismiss()
                     }

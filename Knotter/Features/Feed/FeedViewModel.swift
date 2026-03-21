@@ -34,7 +34,7 @@ final class FeedViewModel: ObservableObject {
         do {
             posts = try await repository.fetchPosts()
         } catch {
-            errorMessage = "投稿の読み込みに失敗しました"
+            errorMessage = String(localized: "error_feed_load")
             // フォールバック: モックデータを表示
             posts = MockPosts.samples
             print("[FeedViewModel] Supabase fetch failed, using mock: \(error)")

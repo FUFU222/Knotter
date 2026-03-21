@@ -17,7 +17,7 @@ struct FeedView: View {
                         Image(systemName: "flame.slash")
                             .font(.system(size: 48))
                             .foregroundColor(.subtleGray)
-                        Text("投稿がまだありません")
+                        Text(String(localized: "feed_no_posts"))
                             .foregroundColor(.subtleGray)
                     }
                 } else {

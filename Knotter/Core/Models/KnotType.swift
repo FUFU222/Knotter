@@ -12,12 +12,12 @@ enum KnotType: String, CaseIterable, Codable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .bowline: return "もやい結び"
-        case .cloveHitch: return "巻き結び"
-        case .twoHalfHitches: return "ふた結び"
-        case .slipKnot: return "引き解け結び"
-        case .cloveHitchAlt: return "クローブヒッチ"
-        case .figureEight: return "エイトノット"
+        case .bowline: return String(localized: "knot_bowline")
+        case .cloveHitch: return String(localized: "knot_clove_hitch")
+        case .twoHalfHitches: return String(localized: "knot_two_half_hitches")
+        case .slipKnot: return String(localized: "knot_slip_knot")
+        case .cloveHitchAlt: return String(localized: "knot_clove_hitch_alt")
+        case .figureEight: return String(localized: "knot_figure_eight")
         }
     }
 }

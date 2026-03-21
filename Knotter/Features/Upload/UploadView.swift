@@ -26,7 +26,7 @@ struct UploadView: View {
                                 Image(systemName: "plus.circle.fill")
                                     .font(.system(size: 40))
                                     .foregroundColor(.rescueOrange)
-                                Text("写真または動画を選択")
+                                Text(String(localized: "upload_select_media"))
                                     .font(.subheadline)
                                     .foregroundColor(.subtleGray)
                             }
@@ -42,10 +42,10 @@ struct UploadView: View {
 
                     // Caption
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("キャプション")
+                        Text(String(localized: "upload_caption"))
                             .font(.caption)
                             .foregroundColor(.subtleGray)
-                        TextField("キャプションを入力（任意）", text: $viewModel.caption, axis: .vertical)
+                        TextField(String(localized: "upload_caption_hint"), text: $viewModel.caption, axis: .vertical)
                             .lineLimit(3...5)
                             .padding(12)
                             .background(Color.cardBackground)
@@ -62,11 +62,11 @@ struct UploadView: View {
 
                     // Knot type picker
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("結索名（必須）")
+                        Text(String(localized: "upload_knot_type"))
                             .font(.caption)
                             .foregroundColor(.subtleGray)
-                        Picker("結索名を選択", selection: $viewModel.selectedKnotType) {
-                            Text("選択してください").tag(KnotType?.none)
+                        Picker(String(localized: "upload_knot_type_picker"), selection: $viewModel.selectedKnotType) {
+                            Text(String(localized: "upload_knot_type_placeholder")).tag(KnotType?.none)
                             ForEach(KnotType.allCases) { knot in
                                 Text(knot.displayName).tag(KnotType?.some(knot))
                             }
@@ -81,7 +81,7 @@ struct UploadView: View {
 
                     // Submit button
                     Button(action: { viewModel.submit() }) {
-                        Text("投稿する")
+                        Text(String(localized: "upload_submit"))
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -95,15 +95,15 @@ struct UploadView: View {
                 .padding(AppTheme.spacing)
             }
             .background(Color.darkBackground)
-            .navigationTitle("新規投稿")
+            .navigationTitle(String(localized: "upload_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
-            .alert("投稿完了", isPresented: $viewModel.showSuccessAlert) {
+            .alert(String(localized: "upload_success_title"), isPresented: $viewModel.showSuccessAlert) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text("投稿が完了しました！")
+                Text(String(localized: "upload_success_message"))
             }
-            .alert("エラー", isPresented: .init(
+            .alert(String(localized: "upload_error_title"), isPresented: .init(
                 get: { viewModel.errorMessage != nil },
                 set: { if !$0 { viewModel.errorMessage = nil } }
             )) {

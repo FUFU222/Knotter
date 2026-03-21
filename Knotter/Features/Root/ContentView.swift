@@ -17,28 +17,28 @@ struct ContentView: View {
             FeedView()
                 .tabItem {
                     Image(systemName: "house.fill")
-                    Text("フィード")
+                    Text(String(localized: "tab_feed"))
                 }
                 .tag(Tab.feed)
 
             SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
-                    Text("検索")
+                    Text(String(localized: "tab_search"))
                 }
                 .tag(Tab.search)
 
             UploadView()
                 .tabItem {
                     Image(systemName: "plus.circle.fill")
-                    Text("投稿")
+                    Text(String(localized: "tab_upload"))
                 }
                 .tag(Tab.upload)
 
             NotificationsView()
                 .tabItem {
                     Image(systemName: "bell.fill")
-                    Text("通知")
+                    Text(String(localized: "tab_notifications"))
                 }
                 .tag(Tab.notifications)
 
@@ -46,7 +46,7 @@ struct ContentView: View {
                 .environment(\.authViewModel, authViewModel)
                 .tabItem {
                     Image(systemName: "person.fill")
-                    Text("プロフィール")
+                    Text(String(localized: "tab_profile"))
                 }
                 .tag(Tab.profile)
         }

@@ -72,7 +72,7 @@ struct FeedItemView: View {
                                 Image(systemName: "bubble.left.fill")
                                     .font(.title2)
                                     .foregroundColor(.white)
-                                Text("コメント")
+                                Text(String(localized: "feed_comments"))
                                     .font(.caption2)
                                     .foregroundColor(.white)
                             }

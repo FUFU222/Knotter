@@ -37,7 +37,7 @@ struct ProfileView: View {
                             Button {
                                 viewModel.startEditing()
                             } label: {
-                                Text("プロフィール編集")
+                                Text(String(localized: "profile_edit"))
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.rescueOrange)
@@ -52,6 +52,9 @@ struct ProfileView: View {
 
                             // My Posts Grid
                             myPostsSection
+
+                            // Legal links
+                            legalSection
                         }
                         .padding(.top, AppTheme.spacing)
                     }
@@ -60,12 +63,12 @@ struct ProfileView: View {
                         Image(systemName: "person.slash")
                             .font(.system(size: 48))
                             .foregroundColor(.subtleGray)
-                        Text("プロフィールを読み込めませんでした")
+                        Text(String(localized: "profile_load_error"))
                             .foregroundColor(.subtleGray)
                     }
                 }
             }
-            .navigationTitle("プロフィール")
+            .navigationTitle(String(localized: "profile_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
@@ -78,13 +81,13 @@ struct ProfileView: View {
                     }
                 }
             }
-            .confirmationDialog("ログアウト", isPresented: $showSignOutConfirm) {
-                Button("ログアウト", role: .destructive) {
+            .confirmationDialog(String(localized: "profile_sign_out"), isPresented: $showSignOutConfirm) {
+                Button(String(localized: "profile_sign_out"), role: .destructive) {
                     Task { await authViewModel?.signOut() }
                 }
-                Button("キャンセル", role: .cancel) {}
+                Button(String(localized: "common_cancel"), role: .cancel) {}
             } message: {
-                Text("ログアウトしますか？")
+                Text(String(localized: "profile_sign_out_confirm"))
             }
             .sheet(isPresented: $viewModel.isEditing) {
                 ProfileEditView(viewModel: viewModel)
@@ -160,15 +163,15 @@ struct ProfileView: View {
 
     private var statsRow: some View {
         HStack(spacing: 0) {
-            statItem(value: "\(viewModel.postCount)", label: "投稿")
+            statItem(value: "\(viewModel.postCount)", label: String(localized: "profile_posts"))
             Divider()
                 .frame(height: 32)
                 .background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followerCount)", label: "フォロワー")
+            statItem(value: "\(viewModel.followerCount)", label: String(localized: "profile_followers"))
             Divider()
                 .frame(height: 32)
                 .background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followingCount)", label: "フォロー中")
+            statItem(value: "\(viewModel.followingCount)", label: String(localized: "profile_following"))
         }
         .padding(.horizontal, AppTheme.spacing)
     }
@@ -190,7 +193,7 @@ struct ProfileView: View {
 
     private var myPostsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("自分の投稿")
+            Text(String(localized: "profile_my_posts"))
                 .font(.headline)
                 .foregroundColor(.white)
                 .padding(.horizontal, AppTheme.spacing)
@@ -200,7 +203,7 @@ struct ProfileView: View {
                     Image(systemName: "camera.fill")
                         .font(.system(size: 32))
                         .foregroundColor(.subtleGray)
-                    Text("まだ投稿がありません")
+                    Text(String(localized: "profile_no_posts"))
                         .font(.subheadline)
                         .foregroundColor(.subtleGray)
                 }
@@ -222,6 +225,56 @@ struct ProfileView: View {
                 .padding(.horizontal, 2)
             }
         }
+    }
+
+    // MARK: - Legal
+
+    private var legalSection: some View {
+        VStack(spacing: 0) {
+            Divider()
+                .background(Color.subtleGray.opacity(0.3))
+                .padding(.horizontal, AppTheme.spacing)
+
+            NavigationLink {
+                TermsOfServiceView()
+            } label: {
+                HStack {
+                    Image(systemName: "doc.text")
+                        .foregroundColor(.subtleGray)
+                    Text(String(localized: "legal_terms"))
+                        .foregroundColor(.white.opacity(0.9))
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundColor(.subtleGray)
+                }
+                .padding(.horizontal, AppTheme.spacing)
+                .padding(.vertical, 14)
+            }
+
+            Divider()
+                .background(Color.subtleGray.opacity(0.3))
+                .padding(.horizontal, AppTheme.spacing)
+
+            NavigationLink {
+                PrivacyPolicyView()
+            } label: {
+                HStack {
+                    Image(systemName: "lock.shield")
+                        .foregroundColor(.subtleGray)
+                    Text(String(localized: "legal_privacy"))
+                        .foregroundColor(.white.opacity(0.9))
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundColor(.subtleGray)
+                }
+                .padding(.horizontal, AppTheme.spacing)
+                .padding(.vertical, 14)
+            }
+        }
+        .padding(.top, 8)
+        .padding(.bottom, 24)
     }
 
     private func postThumbnail(post: Post) -> some View {

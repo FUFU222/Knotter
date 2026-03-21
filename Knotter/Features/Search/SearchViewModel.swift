@@ -8,9 +8,16 @@ final class SearchViewModel: ObservableObject {
     @Published var users: [Profile] = []
     @Published var isSearching: Bool = false
 
-    enum SearchScope: String, CaseIterable {
-        case posts = "投稿"
-        case users = "ユーザー"
+    enum SearchScope: CaseIterable {
+        case posts
+        case users
+
+        var displayName: String {
+            switch self {
+            case .posts: return String(localized: "search_scope_posts")
+            case .users: return String(localized: "search_scope_users")
+            }
+        }
     }
 
     private let repository: SearchRepository

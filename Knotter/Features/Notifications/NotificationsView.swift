@@ -17,7 +17,7 @@ struct NotificationsView: View {
                         Image(systemName: "bell.slash")
                             .font(.system(size: 48))
                             .foregroundColor(.subtleGray)
-                        Text("通知はまだありません")
+                        Text(String(localized: "notifications_empty"))
                             .foregroundColor(.subtleGray)
                     }
                 } else {
@@ -46,13 +46,13 @@ struct NotificationsView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-            .navigationTitle("通知")
+            .navigationTitle(String(localized: "notifications_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if viewModel.unreadCount > 0 {
-                        Button("すべて既読") {
+                        Button(String(localized: "notifications_mark_all_read")) {
                             Task { await viewModel.markAllAsRead() }
                         }
                         .font(.caption)
@@ -128,11 +128,11 @@ struct NotificationsView: View {
         let action: String
         switch notification.type {
         case .like:
-            action = "があなたの投稿にいいねしました"
+            action = String(localized: "notification_liked")
         case .comment:
-            action = "があなたの投稿にコメントしました"
+            action = String(localized: "notification_commented")
         case .follow:
-            action = "があなたをフォローしました"
+            action = String(localized: "notification_followed")
         }
 
         result += AttributedString(action)

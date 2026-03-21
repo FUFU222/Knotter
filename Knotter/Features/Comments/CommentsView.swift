@@ -24,7 +24,7 @@ struct CommentsView: View {
                             Image(systemName: "bubble.left")
                                 .font(.system(size: 48))
                                 .foregroundColor(.subtleGray)
-                            Text("コメントはまだありません")
+                            Text(String(localized: "comments_empty"))
                                 .foregroundColor(.subtleGray)
                         }
                         Spacer()
@@ -44,7 +44,7 @@ struct CommentsView: View {
                     inputBar
                 }
             }
-            .navigationTitle("コメント")
+            .navigationTitle(String(localized: "comments_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .task {
@@ -107,7 +107,7 @@ struct CommentsView: View {
 
     private var inputBar: some View {
         HStack(spacing: 10) {
-            TextField("コメントを追加...", text: $viewModel.newCommentText, axis: .vertical)
+            TextField(String(localized: "comments_placeholder"), text: $viewModel.newCommentText, axis: .vertical)
                 .lineLimit(1...3)
                 .padding(10)
                 .background(Color.cardBackground)

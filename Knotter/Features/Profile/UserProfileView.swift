@@ -43,12 +43,12 @@ struct UserProfileView: View {
                     Image(systemName: "person.slash")
                         .font(.system(size: 48))
                         .foregroundColor(.subtleGray)
-                    Text("ユーザーが見つかりません")
+                    Text(String(localized: "profile_user_not_found"))
                         .foregroundColor(.subtleGray)
                 }
             }
         }
-        .navigationTitle(viewModel.profile?.username ?? "プロフィール")
+        .navigationTitle(viewModel.profile?.username ?? String(localized: "profile_title"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .task {
@@ -100,11 +100,11 @@ struct UserProfileView: View {
 
     private var statsRow: some View {
         HStack(spacing: 0) {
-            statItem(value: "\(viewModel.postCount)", label: "投稿")
+            statItem(value: "\(viewModel.postCount)", label: String(localized: "profile_posts"))
             Divider().frame(height: 32).background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followerCount)", label: "フォロワー")
+            statItem(value: "\(viewModel.followerCount)", label: String(localized: "profile_followers"))
             Divider().frame(height: 32).background(Color.subtleGray.opacity(0.3))
-            statItem(value: "\(viewModel.followingCount)", label: "フォロー中")
+            statItem(value: "\(viewModel.followingCount)", label: String(localized: "profile_following"))
         }
         .padding(.horizontal, AppTheme.spacing)
     }
@@ -130,7 +130,7 @@ struct UserProfileView: View {
         } label: {
             HStack(spacing: 6) {
                 Image(systemName: viewModel.isFollowing ? "person.badge.minus" : "person.badge.plus")
-                Text(viewModel.isFollowing ? "フォロー中" : "フォローする")
+                Text(viewModel.isFollowing ? String(localized: "profile_following") : String(localized: "profile_follow"))
             }
             .font(.subheadline)
             .fontWeight(.semibold)
@@ -148,7 +148,7 @@ struct UserProfileView: View {
 
     private var userPostsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("投稿")
+            Text(String(localized: "profile_posts"))
                 .font(.headline)
                 .foregroundColor(.white)
                 .padding(.horizontal, AppTheme.spacing)
@@ -158,7 +158,7 @@ struct UserProfileView: View {
                     Image(systemName: "camera.fill")
                         .font(.system(size: 32))
                         .foregroundColor(.subtleGray)
-                    Text("まだ投稿がありません")
+                    Text(String(localized: "profile_no_posts"))
                         .font(.subheadline)
                         .foregroundColor(.subtleGray)
                 }

@@ -9,7 +9,7 @@ struct KnotTypeFilterView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: AppTheme.smallSpacing) {
                 // 「すべて」チップ
-                chipButton(label: "すべて", isSelected: selectedKnotType == nil) {
+                chipButton(label: String(localized: "filter_all"), isSelected: selectedKnotType == nil) {
                     selectedKnotType = nil
                 }
 

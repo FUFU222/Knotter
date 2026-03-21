@@ -88,7 +88,7 @@ final class AuthViewModel: ObservableObject {
                 authState = .authenticated
                 resetForm()
             } else {
-                errorMessage = "確認メールを送信しました。メールを確認してください。"
+                errorMessage = String(localized: "error_confirm_email")
             }
         } catch {
             errorMessage = mapError(error)
@@ -129,17 +129,17 @@ final class AuthViewModel: ObservableObject {
     private func mapError(_ error: Error) -> String {
         let message = error.localizedDescription.lowercased()
         if message.contains("invalid login") || message.contains("invalid_credentials") {
-            return "メールアドレスまたはパスワードが正しくありません"
+            return String(localized: "error_invalid_credentials")
         }
         if message.contains("already registered") || message.contains("user_already_exists") {
-            return "このメールアドレスは既に登録されています"
+            return String(localized: "error_already_registered")
         }
         if message.contains("weak password") || message.contains("password") {
-            return "パスワードは6文字以上で入力してください"
+            return String(localized: "error_weak_password")
         }
         if message.contains("rate limit") {
-            return "しばらく時間をおいて再度お試しください"
+            return String(localized: "error_rate_limit")
         }
-        return "エラーが発生しました。再度お試しください。"
+        return String(localized: "error_generic")
     }
 }

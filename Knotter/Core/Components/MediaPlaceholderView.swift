@@ -41,7 +41,7 @@ struct MediaPlaceholderView: View {
             Image(systemName: mediaType == .video ? "video.fill" : "photo.fill")
                 .font(.system(size: 48))
                 .foregroundColor(.subtleGray)
-            Text(mediaType == .video ? "動画" : "写真")
+            Text(mediaType == .video ? String(localized: "media_video") : String(localized: "media_photo"))
                 .font(.caption)
                 .foregroundColor(.subtleGray)
         }

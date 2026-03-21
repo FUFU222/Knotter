@@ -20,7 +20,7 @@ struct AuthView: View {
                             .foregroundColor(.white)
                             .kerning(4)
 
-                        Text("結索共有SNS")
+                        Text(String(localized: "app_tagline"))
                             .font(.subheadline)
                             .foregroundColor(.subtleGray)
                     }
@@ -28,8 +28,8 @@ struct AuthView: View {
 
                     // Mode switcher
                     HStack(spacing: 0) {
-                        modeTab(title: "ログイン", mode: .signIn)
-                        modeTab(title: "新規登録", mode: .signUp)
+                        modeTab(title: String(localized: "auth_sign_in"), mode: .signIn)
+                        modeTab(title: String(localized: "auth_sign_up"), mode: .signUp)
                     }
                     .background(Color.cardBackground)
                     .cornerRadius(AppTheme.cornerRadius)
@@ -39,7 +39,7 @@ struct AuthView: View {
                     VStack(spacing: AppTheme.spacing) {
                         // Email
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("メールアドレス")
+                            Text(String(localized: "auth_email"))
                                 .font(.caption)
                                 .foregroundColor(.subtleGray)
                             TextField("email@example.com", text: $viewModel.email)
@@ -55,10 +55,10 @@ struct AuthView: View {
 
                         // Password
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("パスワード")
+                            Text(String(localized: "auth_password"))
                                 .font(.caption)
                                 .foregroundColor(.subtleGray)
-                            SecureField("6文字以上", text: $viewModel.password)
+                            SecureField(String(localized: "auth_password_hint"), text: $viewModel.password)
                                 .textContentType(viewModel.authMode == .signUp ? .newPassword : .password)
                                 .padding(14)
                                 .background(Color.cardBackground)
@@ -69,10 +69,10 @@ struct AuthView: View {
                         // Confirm password (sign up only)
                         if viewModel.authMode == .signUp {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("パスワード（確認）")
+                                Text(String(localized: "auth_confirm_password"))
                                     .font(.caption)
                                     .foregroundColor(.subtleGray)
-                                SecureField("もう一度入力", text: $viewModel.confirmPassword)
+                                SecureField(String(localized: "auth_confirm_password_hint"), text: $viewModel.confirmPassword)
                                     .textContentType(.newPassword)
                                     .padding(14)
                                     .background(Color.cardBackground)
@@ -80,7 +80,7 @@ struct AuthView: View {
                                     .foregroundColor(.white)
 
                                 if viewModel.passwordMismatch {
-                                    Text("パスワードが一致しません")
+                                    Text(String(localized: "auth_password_mismatch"))
                                         .font(.caption2)
                                         .foregroundColor(.red)
                                 }
@@ -105,7 +105,7 @@ struct AuthView: View {
                                     ProgressView()
                                         .tint(.white)
                                 } else {
-                                    Text(viewModel.authMode == .signIn ? "ログイン" : "アカウント作成")
+                                    Text(viewModel.authMode == .signIn ? String(localized: "auth_sign_in") : String(localized: "auth_create_account"))
                                         .fontWeight(.bold)
                                 }
                             }

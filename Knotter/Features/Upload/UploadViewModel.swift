@@ -58,7 +58,7 @@ final class UploadViewModel: ObservableObject {
                 showSuccessAlert = true
                 resetForm()
             } catch {
-                errorMessage = "投稿に失敗しました: \(error.localizedDescription)"
+                errorMessage = "\(String(localized: "error_post_failed")): \(error.localizedDescription)"
             }
             isSubmitting = false
         }

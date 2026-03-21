@@ -65,7 +65,7 @@ final class ProfileViewModel: ObservableObject {
             followerCount = followers.count
             followingCount = following.count
         } catch {
-            errorMessage = "プロフィールの読み込みに失敗しました"
+            errorMessage = String(localized: "error_profile_load")
             print("[ProfileViewModel] load error: \(error)")
         }
         isLoading = false
@@ -105,7 +105,7 @@ final class ProfileViewModel: ObservableObject {
             profile = updated
             isEditing = false
         } catch {
-            errorMessage = "保存に失敗しました"
+            errorMessage = String(localized: "error_profile_save")
             print("[ProfileViewModel] save error: \(error)")
         }
         isSaving = false
@@ -130,7 +130,7 @@ final class ProfileViewModel: ObservableObject {
             let url = try await profileRepository.uploadAvatar(userId: userId, imageData: jpegData)
             profile?.avatarUrl = url
         } catch {
-            errorMessage = "アバターのアップロードに失敗しました"
+            errorMessage = String(localized: "error_avatar_upload")
             print("[ProfileViewModel] avatar upload error: \(error)")
         }
         isUploadingAvatar = false

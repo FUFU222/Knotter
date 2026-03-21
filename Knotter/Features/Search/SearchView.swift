@@ -15,9 +15,9 @@ struct SearchView: View {
 
                 VStack(spacing: 0) {
                     // Scope picker
-                    Picker("検索対象", selection: $viewModel.searchScope) {
+                    Picker(String(localized: "search_scope"), selection: $viewModel.searchScope) {
                         ForEach(SearchViewModel.SearchScope.allCases, id: \.self) { scope in
-                            Text(scope.rawValue).tag(scope)
+                            Text(scope.displayName).tag(scope)
                         }
                     }
                     .pickerStyle(.segmented)
@@ -39,7 +39,7 @@ struct SearchView: View {
                             Image(systemName: "magnifyingglass")
                                 .font(.system(size: 48))
                                 .foregroundColor(.subtleGray)
-                            Text("キーワードで検索")
+                            Text(String(localized: "search_hint"))
                                 .foregroundColor(.subtleGray)
                         }
                         Spacer()
@@ -53,10 +53,10 @@ struct SearchView: View {
                     }
                 }
             }
-            .navigationTitle("検索")
+            .navigationTitle(String(localized: "search_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
-            .searchable(text: $viewModel.searchText, prompt: "検索...")
+            .searchable(text: $viewModel.searchText, prompt: Text(String(localized: "search_prompt")))
             .onSubmit(of: .search) {
                 Task { await viewModel.search() }
             }
@@ -75,7 +75,7 @@ struct SearchView: View {
                     Image(systemName: "doc.text.magnifyingglass")
                         .font(.system(size: 48))
                         .foregroundColor(.subtleGray)
-                    Text("投稿が見つかりませんでした")
+                    Text(String(localized: "search_no_posts"))
                         .foregroundColor(.subtleGray)
                 }
                 .frame(maxHeight: .infinity)
@@ -138,7 +138,7 @@ struct SearchView: View {
                     Image(systemName: "person.slash")
                         .font(.system(size: 48))
                         .foregroundColor(.subtleGray)
-                    Text("ユーザーが見つかりませんでした")
+                    Text(String(localized: "search_no_users"))
                         .foregroundColor(.subtleGray)
                 }
                 .frame(maxHeight: .infinity)
