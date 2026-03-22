@@ -20,7 +20,15 @@ struct TermsOfServiceView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
 
+    private var isJapanese: Bool {
+        Locale.current.language.languageCode?.identifier == "ja"
+    }
+
     private var termsText: String {
+        isJapanese ? termsTextJA : termsTextEN
+    }
+
+    private var termsTextJA: String {
         """
         Knotter 利用規約
 
@@ -84,6 +92,73 @@ struct TermsOfServiceView: View {
 
         第10条（お問い合わせ）
         本規約に関するお問い合わせは、アプリ内のお問い合わせ機能またはメールにてご連絡ください。
+        """
+    }
+
+    private var termsTextEN: String {
+        """
+        Knotter Terms of Service
+
+        Last Updated: March 21, 2026
+
+        These Terms of Service (hereinafter referred to as "Terms") set forth the conditions governing the use of Knotter (hereinafter referred to as "the App"). Please read these Terms carefully before using the App. By using the App, you are deemed to have agreed to these Terms.
+
+        Article 1 (Definitions)
+        1. "User" refers to any individual who uses the App.
+        2. "Content" refers to images, videos, text, and other information posted by Users on the App.
+        3. "Service" refers to all services provided through the App.
+
+        Article 2 (Account Registration)
+        1. Account registration is required to use the Service.
+        2. Users must register accurate and up-to-date information.
+        3. Users are responsible for managing their own accounts and may not transfer or lend their accounts to third parties.
+        4. Users are responsible for managing their passwords. We shall not be liable for any damages resulting from unauthorized use.
+
+        Article 3 (Prohibited Activities)
+        Users shall not engage in any of the following activities when using the Service:
+        1. Activities that violate laws, regulations, or public order and morals
+        2. Activities related to criminal conduct
+        3. Activities that infringe upon the intellectual property rights, portrait rights, privacy, reputation, or other rights of other Users or third parties
+        4. Harassment, defamation, or threats directed at other Users
+        5. Posting obscene, violent, or discriminatory Content
+        6. Disseminating false information
+        7. Activities that interfere with the operation of the Service
+        8. Unauthorized access or attempts thereof
+        9. Collecting or using other Users' personal information without consent
+        10. Promoting unsafe or dangerous methods of use regarding knot-tying techniques
+        11. Unauthorized commercial use (advertising, solicitation, etc.)
+        12. Any other activities deemed inappropriate by the operator
+
+        Article 4 (Rights Regarding Content)
+        1. Copyright of Content posted by Users belongs to the respective Users.
+        2. By posting Content on the App, Users grant us a non-exclusive license to use such Content for the purposes of providing, improving, and promoting the Service.
+        3. We reserve the right to remove, without prior notice, any Content that violates applicable laws or these Terms.
+
+        Article 5 (Modification, Suspension, or Termination of the Service)
+        1. We may modify, suspend, or terminate the Service without prior notice to Users.
+        2. We shall not be liable for any damages incurred by Users as a result of any modification, suspension, or termination of the Service.
+
+        Article 6 (Disclaimer)
+        1. We make no warranties regarding the content, accuracy, reliability, or availability of the Service.
+        2. We shall bear no responsibility for any disputes between Users.
+        3. We shall not be liable for any damages (including loss of data) arising from the use of the Service, except in cases of our willful misconduct or gross negligence.
+        4. Content related to knot-tying techniques is provided for informational purposes only. Users shall exercise their own judgment and assume their own responsibility when applying such techniques in practice.
+
+        Article 7 (Account Suspension or Deletion)
+        1. We may suspend or delete a User's account without prior notice if the User violates these Terms.
+        2. Users may request the deletion of their account at any time.
+
+        Article 8 (Amendments to the Terms)
+        1. We may amend these Terms as necessary.
+        2. Amended Terms shall take effect upon being displayed within the App.
+        3. Continued use of the Service after any amendment shall be deemed as acceptance of the amended Terms.
+
+        Article 9 (Governing Law and Jurisdiction)
+        1. These Terms shall be governed by the laws of Japan.
+        2. Any disputes arising in connection with these Terms shall be subject to the exclusive jurisdiction of the Tokyo District Court as the court of first instance.
+
+        Article 10 (Contact Information)
+        For inquiries regarding these Terms, please contact us through the in-app contact feature or by email.
         """
     }
 }

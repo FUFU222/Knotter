@@ -20,7 +20,15 @@ struct PrivacyPolicyView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
 
+    private var isJapanese: Bool {
+        Locale.current.language.languageCode?.identifier == "ja"
+    }
+
     private var privacyText: String {
+        isJapanese ? privacyTextJA : privacyTextEN
+    }
+
+    private var privacyTextJA: String {
         """
         Knotter プライバシーポリシー
 
@@ -133,6 +141,122 @@ struct PrivacyPolicyView: View {
         13. お問い合わせ
 
         個人情報の取り扱いに関するお問い合わせは、アプリ内のお問い合わせ機能またはメールにてご連絡ください。
+        """
+    }
+
+    private var privacyTextEN: String {
+        """
+        Knotter Privacy Policy
+
+        Last Updated: March 21, 2026
+
+        Knotter (hereinafter referred to as "the App") respects User privacy and is committed to protecting personal information. This Privacy Policy (hereinafter referred to as "the Policy") explains how personal information is handled within the App.
+
+        1. Information We Collect
+
+        The App collects the following information:
+
+        (1) Information Provided by Users
+        - Email address (used for account registration and login)
+        - Username, display name
+        - Profile information (biography)
+        - Profile image (avatar)
+        - Posted Content (images, videos, captions)
+        - Comments
+
+        (2) Information Collected Automatically
+        - Account creation and update timestamps
+        - Action history such as likes and follows
+        - Notification history (notifications related to likes, comments, and follows)
+
+        (3) Information We Do Not Collect
+        The App does not collect the following information:
+        - Location data
+        - Contact information
+        - Health data
+        - Payment information
+        - Device identifiers (advertising IDs, etc.)
+
+        2. Purpose of Use
+
+        Collected information is used for the following purposes:
+        - Account creation, authentication, and management
+        - Providing social networking features such as posts, comments, and likes
+        - Providing follow and user search functionality
+        - Providing notification functionality
+        - Providing profile display and editing functionality
+        - Service improvement and quality enhancement
+        - Prevention of unauthorized use
+
+        3. Data Storage and Management
+
+        - User information is stored on Supabase (cloud service) servers.
+        - Servers operate on AWS infrastructure, and data is transmitted through encrypted communications (HTTPS/TLS).
+        - Image and video files are stored in Supabase Storage.
+        - Passwords are securely hashed and stored by Supabase Auth.
+
+        4. Disclosure of Information to Third Parties
+
+        The App does not provide Users' personal information to third parties except in the following cases:
+        - When the User has given consent
+        - When required by law
+        - When necessary to protect the life, body, or property of an individual
+        - To subcontractors necessary for service provision (infrastructure services such as Supabase)
+
+        5. Publicly Visible Information
+
+        The following information is visible to other Users:
+        - Username, display name
+        - Profile image
+        - Biography
+        - Posted Content (images, videos, captions)
+        - Comments
+        - Number of likes
+        - Follower count, following count
+
+        6. Access to Photo Library
+
+        The App requests access to the User's photo library for creating posts and setting profile images. Access is limited to images and videos selected by the User; the App does not browse or collect the entire photo library.
+
+        7. User Rights
+
+        Users have the following rights:
+        - Viewing and editing their own profile information
+        - Deleting their posted Content
+        - Requesting deletion of their account
+        - Requesting disclosure, correction, or deletion of their personal information
+
+        8. Use by Minors
+
+        The App is not intended for use by individuals under the age of 13. If we become aware that a person under the age of 13 has provided personal information, we will promptly delete such information.
+
+        9. Cookies and Tracking
+
+        The App is a native iOS application and does not use cookies. Additionally, no third-party tracking tools or advertising SDKs are integrated.
+
+        10. Data Retention Period
+
+        - User information is retained while the account remains active.
+        - Upon request for account deletion, data will be deleted within a reasonable period.
+        - Information required to be retained by law will be kept for the necessary duration.
+
+        11. Security
+
+        The App implements the following security measures to protect User information:
+        - Encryption of communications (HTTPS/TLS)
+        - Password hashing
+        - Access control via authentication tokens
+        - Utilization of Supabase security features
+
+        However, we cannot guarantee complete security for communications over the Internet.
+
+        12. Changes to the Policy
+
+        The Policy may be amended as necessary. In the event of significant changes, Users will be notified within the App. Continued use of the App after any changes shall be deemed as acceptance of the revised Policy.
+
+        13. Contact Information
+
+        For inquiries regarding the handling of personal information, please contact us through the in-app contact feature or by email.
         """
     }
 }
