@@ -67,14 +67,15 @@ final class FeedViewModel: ObservableObject {
         isLoadingMore = false
     }
 
-    /// 結び目タイプ一覧を読み込む
+    /// 投稿が多い（Hot）結び目タイプを読み込む（最大8件）
     func loadKnotTypes() async {
         do {
-            knotTypes = try await knotTypeRepository.fetchKnotTypes()
+            let hot = try await knotTypeRepository.fetchHotKnotTypes(limit: 8)
+            knotTypes = hot.isEmpty ? Array(KnotType.allCases.prefix(6)) : hot
         } catch {
-            // フォールバック: enum の全ケースを使用
-            knotTypes = KnotType.allCases
-            print("[FeedViewModel] Failed to load knot types: \(error)")
+            // フォールバック: 代表的な結び目を表示
+            knotTypes = [.bowline, .cloveHitch, .figureEight, .squareKnot, .sheetBend, .doubleBowline]
+            print("[FeedViewModel] Failed to load hot knot types: \(error)")
         }
     }
 

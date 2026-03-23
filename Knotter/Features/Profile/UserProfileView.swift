@@ -4,6 +4,7 @@ import SwiftUI
 struct UserProfileView: View {
     let userId: UUID
     @StateObject private var viewModel: UserProfileViewModel
+    @StateObject private var rankBadgeVM = RankBadgeViewModel()
     @Environment(\.dismiss) private var dismiss
     @State private var showReportSheet = false
 
@@ -25,6 +26,11 @@ struct UserProfileView: View {
                     VStack(spacing: 24) {
                         profileHeader(profile: profile)
                         statsRow
+
+                        // Rank & Badges
+                        RankBadgeSection(viewModel: rankBadgeVM)
+                            .padding(.horizontal, AppTheme.spacing)
+
                         followButton
 
                         if let bio = profile.bio, !bio.isEmpty {
@@ -80,6 +86,7 @@ struct UserProfileView: View {
         }
         .task {
             await viewModel.load()
+            await rankBadgeVM.loadData(userId: userId)
         }
         .alert(
             String(localized: "upload_error_title"),

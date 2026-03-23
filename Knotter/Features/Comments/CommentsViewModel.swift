@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @MainActor
 final class CommentsViewModel: ObservableObject {
@@ -39,6 +40,7 @@ final class CommentsViewModel: ObservableObject {
             let comment = try await repository.addComment(postId: postId, content: text)
             comments.append(comment)
             newCommentText = ""
+            Haptics.success()
         } catch {
             errorMessage = String(localized: "error_send_comment")
             print("[CommentsViewModel] send failed: \(error)")

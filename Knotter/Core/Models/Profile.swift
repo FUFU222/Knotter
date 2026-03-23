@@ -8,6 +8,8 @@ struct Profile: Identifiable, Codable {
     var bio: String?
     let createdAt: String?
     let updatedAt: String?
+    var rank: UserRank?
+    var rankPoints: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -17,6 +19,8 @@ struct Profile: Identifiable, Codable {
         case bio
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case rank
+        case rankPoints = "rank_points"
     }
 
     /// プロフィール更新用のペイロード

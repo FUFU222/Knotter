@@ -108,6 +108,7 @@ struct ReportSheet: View {
                 try await repository.reportUser(userId: id, reason: reason)
             }
             showSuccess = true
+            Haptics.success()
         } catch {
             print("[ReportSheet] submit failed: \(error)")
         }

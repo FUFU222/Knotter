@@ -14,10 +14,10 @@ struct AuthView: View {
                 VStack(spacing: 32) {
                     // Logo area — 起動時アニメーション
                     VStack(spacing: 12) {
-                        Image(systemName: "flame.fill")
-                            .font(.system(size: 56))
-                            .foregroundStyle(LinearGradient.orangeGlow)
-                            .shadow(color: .rescueOrange.opacity(0.4), radius: 20)
+                        Image("KnotterLogo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 120, height: 120)
                             .scaleEffect(logoAppeared ? 1.0 : 0.5)
                             .opacity(logoAppeared ? 1 : 0)
 

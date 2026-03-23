@@ -94,7 +94,7 @@ struct FeedItemView: View {
                                 .frame(width: 32, height: 32)
                         }
                     }
-                    .padding(.trailing, 4)
+                    .padding(.trailing, 8)
                     .offset(x: contentAppeared ? 0 : 20)
                     .opacity(contentAppeared ? 1 : 0)
                 }

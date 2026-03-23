@@ -71,6 +71,15 @@
 		A100003E /* ReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100003E /* ReportRepository.swift */; };
 		A100003F /* SupabaseReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100003F /* SupabaseReportRepository.swift */; };
 		A1000040 /* ReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000040 /* ReportSheet.swift */; };
+		A1000041 /* UserRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000041 /* UserRank.swift */; };
+		A1000042 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000042 /* Badge.swift */; };
+		A1000043 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000043 /* UserStats.swift */; };
+		A1000044 /* GamificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000044 /* GamificationRepository.swift */; };
+		A1000045 /* SupabaseGamificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000045 /* SupabaseGamificationRepository.swift */; };
+		A1000046 /* RankBadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000046 /* RankBadgeViewModel.swift */; };
+		A1000047 /* RankBadgeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000047 /* RankBadgeSection.swift */; };
+		A1000048 /* BadgeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000048 /* BadgeCollectionView.swift */; };
+		A1000049 /* NewBadgeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000049 /* NewBadgeOverlay.swift */; };
 		AT000001 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BT000001 /* FeedViewModelTests.swift */; };
 		AT000002 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BT000002 /* AuthViewModelTests.swift */; };
 		AT000003 /* UploadViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BT000003 /* UploadViewModelTests.swift */; };
@@ -158,6 +167,15 @@
 		B100003E /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
 		B100003F /* SupabaseReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseReportRepository.swift; sourceTree = "<group>"; };
 		B1000040 /* ReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheet.swift; sourceTree = "<group>"; };
+		B1000041 /* UserRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRank.swift; sourceTree = "<group>"; };
+		B1000042 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		B1000043 /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
+		B1000044 /* GamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationRepository.swift; sourceTree = "<group>"; };
+		B1000045 /* SupabaseGamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseGamificationRepository.swift; sourceTree = "<group>"; };
+		B1000046 /* RankBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBadgeViewModel.swift; sourceTree = "<group>"; };
+		B1000047 /* RankBadgeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBadgeSection.swift; sourceTree = "<group>"; };
+		B1000048 /* BadgeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionView.swift; sourceTree = "<group>"; };
+		B1000049 /* NewBadgeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBadgeOverlay.swift; sourceTree = "<group>"; };
 		BT000001 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		BT000002 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		BT000003 /* UploadViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewModelTests.swift; sourceTree = "<group>"; };
@@ -279,6 +297,8 @@
 				B100002F /* SupabaseKnotTypeRepository.swift */,
 				B100003E /* ReportRepository.swift */,
 				B100003F /* SupabaseReportRepository.swift */,
+				B1000044 /* GamificationRepository.swift */,
+				B1000045 /* SupabaseGamificationRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -301,6 +321,9 @@
 				B1000018 /* Profile.swift */,
 				B100001E /* Comment.swift */,
 				B100001F /* AppNotification.swift */,
+				B1000041 /* UserRank.swift */,
+				B1000042 /* Badge.swift */,
+				B1000043 /* UserStats.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -343,6 +366,10 @@
 				B100001D /* ProfileEditView.swift */,
 				B1000032 /* UserProfileView.swift */,
 				B1000033 /* UserProfileViewModel.swift */,
+				B1000046 /* RankBadgeViewModel.swift */,
+				B1000047 /* RankBadgeSection.swift */,
+				B1000048 /* BadgeCollectionView.swift */,
+				B1000049 /* NewBadgeOverlay.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -655,6 +682,15 @@
 				A100003E /* ReportRepository.swift in Sources */,
 				A100003F /* SupabaseReportRepository.swift in Sources */,
 				A1000040 /* ReportSheet.swift in Sources */,
+				A1000041 /* UserRank.swift in Sources */,
+				A1000042 /* Badge.swift in Sources */,
+				A1000043 /* UserStats.swift in Sources */,
+				A1000044 /* GamificationRepository.swift in Sources */,
+				A1000045 /* SupabaseGamificationRepository.swift in Sources */,
+				A1000046 /* RankBadgeViewModel.swift in Sources */,
+				A1000047 /* RankBadgeSection.swift in Sources */,
+				A1000048 /* BadgeCollectionView.swift in Sources */,
+				A1000049 /* NewBadgeOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +837,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H7HM728S48;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -830,7 +866,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H7HM728S48;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

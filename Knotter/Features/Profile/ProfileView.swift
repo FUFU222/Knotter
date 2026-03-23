@@ -3,6 +3,7 @@ import PhotosUI
 
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
+    @StateObject private var rankBadgeVM = RankBadgeViewModel()
     @Environment(\.authViewModel) private var authViewModel
     @State private var showSignOutConfirm = false
 
@@ -23,6 +24,10 @@ struct ProfileView: View {
 
                             // Stats
                             statsRow
+
+                            // Rank & Badges
+                            RankBadgeSection(viewModel: rankBadgeVM)
+                                .padding(.horizontal, AppTheme.spacing)
 
                             // Bio
                             if let bio = profile.bio, !bio.isEmpty {
@@ -96,6 +101,9 @@ struct ProfileView: View {
             }
             .task {
                 await viewModel.loadProfile()
+                if let userId = viewModel.profile?.id {
+                    await rankBadgeVM.loadData(userId: userId)
+                }
             }
         }
     }

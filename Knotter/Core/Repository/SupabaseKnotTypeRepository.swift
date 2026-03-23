@@ -20,4 +20,25 @@ final class SupabaseKnotTypeRepository: KnotTypeRepository {
 
         return records.compactMap { KnotType(rawValue: $0.slug) }
     }
+
+    func fetchHotKnotTypes(limit: Int = 8) async throws -> [KnotType] {
+        struct HotKnotResult: Codable {
+            let slug: String
+            let displayName: String
+            let postCount: Int
+
+            enum CodingKeys: String, CodingKey {
+                case slug
+                case displayName = "display_name"
+                case postCount = "post_count"
+            }
+        }
+
+        let results: [HotKnotResult] = try await client
+            .rpc("get_hot_knot_types", params: ["max_count": limit])
+            .execute()
+            .value
+
+        return results.compactMap { KnotType(slug: $0.slug) }
+    }
 }
